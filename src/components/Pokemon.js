@@ -4,13 +4,13 @@ import PokemonDataService from '../services/PokemonService';
 const Pokemon = (props) => {
   const initialPokemonState = {
     id: null,
-    Pokemon: '',
-    GIF: '',
-    HP: '',
-    Attack: '',
-    Defense: '',
-    Speed: '',
-    Description: '',
+    name: '',
+    img: '',
+    hp: '',
+    attack: '',
+    defense: '',
+    speed: '',
+    active: true,
   };
   const [currentPokemon, setCurrentPokemon] = useState(initialPokemonState);
   const [message, setMessage] = useState('');
@@ -31,26 +31,26 @@ const Pokemon = (props) => {
   }, [props.match.params.id]);
 
   const handleInputChange = (event) => {
-    const { Pokemon, value } = event.target;
+    const { name, value } = event.target;
 
-    setCurrentPokemon({ ...currentPokemon, [Pokemon]: value });
+    setCurrentPokemon({ ...currentPokemon, [name]: value });
   };
 
   const updateActive = (status) => {
     var data = {
       id: currentPokemon.id,
-      Pokemon: currentPokemon.Pokemon,
-      GIF: currentPokemon.GIF,
-      HP: currentPokemon.HP,
-      Attack: currentPokemon.Attack,
-      Defense: currentPokemon.Defense,
-      Speed: currentPokemon.Speed,
+      name: currentPokemon.name,
+      img: currentPokemon.img,
+      hp: currentPokemon.hp,
+      attack: currentPokemon.attack,
+      defense: currentPokemon.defense,
+      speed: currentPokemon.speed,
 
-      Description: status,
+      active: status,
     };
     PokemonDataService.update(currentPokemon.id, data)
       .then((response) => {
-        setCurrentPokemon({ ...currentPokemon, Description: status });
+        setCurrentPokemon({ ...currentPokemon, active: status });
         console.log(response.data);
       })
       .catch((e) => {
@@ -93,7 +93,7 @@ const Pokemon = (props) => {
                 className="form-control"
                 id="name"
                 name="name"
-                value={currentPokemon.Pokemon}
+                value={currentPokemon.name}
                 onChange={handleInputChange}
               />
             </div>
@@ -104,7 +104,7 @@ const Pokemon = (props) => {
                 className="form-control"
                 id="img"
                 name="img"
-                value={currentPokemon.GIF}
+                value={currentPokemon.img}
                 onChange={handleInputChange}
               />
             </div>
@@ -126,7 +126,7 @@ const Pokemon = (props) => {
                 className="form-control"
                 id="attack"
                 name="attack"
-                value={currentPokemon.Attack}
+                value={currentPokemon.attack}
                 onChange={handleInputChange}
               />
             </div>
@@ -137,7 +137,7 @@ const Pokemon = (props) => {
                 className="form-control"
                 id="defense"
                 name="defense"
-                value={currentPokemon.Defense}
+                value={currentPokemon.defense}
                 onChange={handleInputChange}
               />
             </div>
@@ -148,7 +148,7 @@ const Pokemon = (props) => {
                 className="form-control"
                 id="speed"
                 name="speed"
-                value={currentPokemon.Speed}
+                value={currentPokemon.speed}
                 onChange={handleInputChange}
               />
             </div>
@@ -156,11 +156,11 @@ const Pokemon = (props) => {
               <label>
                 <strong>Status:</strong>
               </label>
-              {currentPokemon.Description ? 'Ativo' : 'Desativado'}
+              {currentPokemon.active ? 'Ativo' : 'Desativado'}
             </div>
           </form>
 
-          {currentPokemon.Description ? (
+          {currentPokemon.active ? (
             <button
               className="badge badge-primary mr-2"
               onClick={() => updateActive(false)}
