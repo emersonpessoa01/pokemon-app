@@ -4,43 +4,43 @@ import PokemonDataService from '../services/PokemonService';
 const AddPokemon = () => {
   const initialPokemonState = {
     id: null,
-    name: '',
-    img: '',
-    hp: '',
-    attack: '',
-    defense: '',
-    speed: '',
-    active: true,
+    Pokemon: '',
+    GIF: '',
+    HP: '',
+    Attack: '',
+    Defense: '',
+    Speed: '',
+    Description: '',
   };
   const [pokemon, setPokemon] = useState(initialPokemonState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setPokemon({ ...pokemon, [name]: value });
+    const { Pokemon, value } = event.target;
+    setPokemon({ ...pokemon, [Pokemon]: value });
   };
 
   const savePokemon = () => {
     var data = {
-      name: pokemon.name,
-      img: pokemon.img,
-      hp: pokemon.hp,
-      attack: pokemon.attack,
-      defense: pokemon.defense,
-      speed: pokemon.speed,
+      Pokemon: pokemon.Pokemon,
+      GIF: pokemon.GIF,
+      HP: pokemon.HP,
+      Attack: pokemon.Attack,
+      Defense: pokemon.Defense,
+      Speed: pokemon.Speed,
     };
 
     PokemonDataService.create(data)
       .then((response) => {
         setPokemon({
           id: response.data.id,
-          name: response.data.name,
-          img: response.data.img,
-          hp: response.data.hp,
-          attack: response.data.attack,
-          defense: response.data.hp,
-          speed: response.data.speed,
-          active: response.data.active,
+          Pokemon: response.data.Pokemon,
+          GIF: response.data.GIF,
+          HP: response.data.HP,
+          Attack: response.data.Attack,
+          Defense: response.data.Defense,
+          Speed: response.data.Speed,
+          Description: response.data.Description,
         });
         setSubmitted(true);
         console.log(response.data);
@@ -73,7 +73,7 @@ const AddPokemon = () => {
               className="form-control"
               id="name"
               required
-              value={pokemon.name}
+              value={pokemon.Pokemon}
               onChange={handleInputChange}
               name="name"
             />
@@ -86,7 +86,7 @@ const AddPokemon = () => {
               className="form-control"
               id="img"
               required
-              value={pokemon.img}
+              value={pokemon.GIF}
               onChange={handleInputChange}
               name="img"
             />
@@ -98,7 +98,7 @@ const AddPokemon = () => {
               className="form-control"
               id="hp"
               required
-              value={pokemon.hp}
+              value={pokemon.HP}
               onChange={handleInputChange}
               name="hp"
             />
@@ -110,7 +110,7 @@ const AddPokemon = () => {
               className="form-control"
               id="attack"
               required
-              value={pokemon.attack}
+              value={pokemon.Attack}
               onChange={handleInputChange}
               name="attack"
             />
@@ -122,7 +122,7 @@ const AddPokemon = () => {
               className="form-control"
               id="defense"
               required
-              value={pokemon.defense}
+              value={pokemon.Defense}
               onChange={handleInputChange}
               name="defense"
             />
@@ -134,7 +134,7 @@ const AddPokemon = () => {
               className="form-control"
               id="speed"
               required
-              value={pokemon.speed}
+              value={pokemon.Speed}
               onChange={handleInputChange}
               name="speed"
             />

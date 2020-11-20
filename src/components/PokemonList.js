@@ -116,11 +116,11 @@ const PokemonList = () => {
               <label>
                 <strong>Name:</strong>
               </label>{' '}
-              {currentPokemon.name}
+              {currentPokemon.Pokemon}
             </div>
             <div>
               <img
-                src={currentPokemon.img}
+                src={currentPokemon.GIF}
                 height="100"
                 alt="Imagem do Pokemon"
               />
@@ -129,31 +129,31 @@ const PokemonList = () => {
               <label>
                 <strong>HP:</strong>
               </label>{' '}
-              {currentPokemon.hp}
+              {currentPokemon.HP}
             </div>
             <div>
               <label>
                 <strong>Attack:</strong>
               </label>{' '}
-              {currentPokemon.attack}
+              {currentPokemon.Attack}
             </div>
             <div>
               <label>
                 <strong>Defense:</strong>
               </label>{' '}
-              {currentPokemon.defense}
+              {currentPokemon.Defense}
             </div>
             <div>
               <label>
                 <strong>Speed:</strong>
               </label>{' '}
-              {currentPokemon.speed}
+              {currentPokemon.Speed}
             </div>
             <div>
               <label>
                 <strong>Status:</strong>
               </label>{' '}
-              {currentPokemon.active ? 'Ativo' : 'Desativado'}
+              {currentPokemon.Description ? 'Ativo' : 'Desativado'}
             </div>
 
             <Link
