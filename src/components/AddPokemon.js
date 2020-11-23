@@ -32,16 +32,17 @@ const AddPokemon = () => {
     };
 
     PokemonDataService.create(data)
-      .then((response) => {
+    .then((response) => {
+      const {id,name, img, hp, attack, defense,speed,active} = response.data
         setPokemon({
-          id: response.data.id,
-          name: response.data.name,
-          img: response.data.img,
-          hp: response.data.hp,
-          attack: response.data.attack,
-          defense: response.data.hp,
-          speed: response.data.speed,
-          active: response.data.active,
+          id,
+          name,
+          img,
+          hp,
+          attack,
+          defense,
+          speed,
+          active,
         });
         setSubmitted(true);
         console.log(response.data);
