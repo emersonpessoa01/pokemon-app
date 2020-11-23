@@ -21,13 +21,14 @@ const AddPokemon = () => {
   };
 
   const savePokemon = () => {
-    var data = {
-      name: pokemon.name,
-      img: pokemon.img,
-      hp: pokemon.hp,
-      attack: pokemon.attack,
-      defense: pokemon.defense,
-      speed: pokemon.speed,
+    const {name, img, hp, attack, defense,speed} = pokemon
+    let data = {
+      name,
+      img,
+      hp,
+      attack,
+      defense,
+      speed,
     };
 
     PokemonDataService.create(data)
