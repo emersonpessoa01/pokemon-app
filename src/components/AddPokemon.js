@@ -3,7 +3,7 @@ import PokemonDataService from '../services/PokemonService';
 
 const AddPokemon = () => {
   const initialPokemonState = {
-    id: null,
+    _id: null,
     name: '',
     img: '',
     hp: '',
