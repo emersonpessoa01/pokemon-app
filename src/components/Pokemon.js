@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import PokemonDataService from '../services/PokemonService';
+import React, { useState, useEffect } from "react";
+import PokemonDataService from "../services/PokemonService";
 
 const Pokemon = (props) => {
   const initialPokemonState = {
-    id: null,
-    name: '',
-    img: '',
-    hp: '',
-    attack: '',
-    defense: '',
-    speed: '',
+    _id: null,
+    name: "",
+    img: "",
+    hp: "",
+    attack: "",
+    defense: "",
+    speed: "",
     active: true,
   };
   const [currentPokemon, setCurrentPokemon] = useState(initialPokemonState);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const getPokemon = (id) => {
     PokemonDataService.get(id)
@@ -37,14 +37,15 @@ const Pokemon = (props) => {
   };
 
   const updateActive = (status) => {
+    const { _id, name, img, hp, attack, defense, speed } = currentPokemon;
     var data = {
-      id: currentPokemon.id,
-      name: currentPokemon.name,
-      img: currentPokemon.img,
-      hp: currentPokemon.hp,
-      attack: currentPokemon.attack,
-      defense: currentPokemon.defense,
-      speed: currentPokemon.speed,
+      _id,
+      name,
+      img,
+      hp,
+      attack,
+      defense,
+      speed,
 
       active: status,
     };
@@ -62,7 +63,7 @@ const Pokemon = (props) => {
     PokemonDataService.update(currentPokemon.id, currentPokemon)
       .then((response) => {
         console.log(response.data);
-        setMessage('The pokemon was updated successfully!');
+        setMessage("The pokemon was updated successfully!");
       })
       .catch((e) => {
         console.log(e);
@@ -73,7 +74,7 @@ const Pokemon = (props) => {
     PokemonDataService.remove(currentPokemon.id)
       .then((response) => {
         console.log(response.data);
-        props.history.push('/pokemon');
+        props.history.push("/pokemon");
       })
       .catch((e) => {
         console.log(e);
@@ -156,7 +157,7 @@ const Pokemon = (props) => {
               <label>
                 <strong>Status:</strong>
               </label>
-              {currentPokemon.active ? 'Ativo' : 'Desativado'}
+              {currentPokemon.active ? "Ativo" : "Desativado"}
             </div>
           </form>
 
